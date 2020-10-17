@@ -7,7 +7,7 @@ def bot_choice_generator():
 def input_validation(answer):
     valid = False
     while not valid:
-        if (answer == "rock") or (answer == "paper") or (answer == "scissors"):
+        if (answer == "rock") or (answer == "paper") or (answer == "scissors") or (answer == "Scissors") or (answer == "Paper") or (answer == "Rock"):
             valid = True
         else:
             print("That is not a valid choice")
