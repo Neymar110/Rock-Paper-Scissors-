@@ -52,7 +52,6 @@ lower_frame.place(relheight = 0.7, relx = 0.10, rely = 0.2, relwidth = 0.8)
 
 label = tk.Label(lower_frame, bg = "white", font = ("Gotham Bold", 13))
 label.place(relheight = 1, relwidth = 1)
-print(tk.font.families())
 root.mainloop()
 
 # 42b52ccd10420d36a7913c26f4c85c5c
