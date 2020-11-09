@@ -29,7 +29,6 @@ def logic(user, bot):
     elif bot == "scissors" and user == "paper":
         return False
 
-    
 def best_of_one(users_input):
     score = []
     users_input = input_validation(users_input).lower()
@@ -39,15 +38,16 @@ def best_of_one(users_input):
     lose = f"Uh oh, You played {users_input} and the bot played {bots_choice}."
     if logic(users_input, bots_choice):
         result = win
-        score.append(f"{users_input} : win")
+        score.append(f"You played {users_input} and won :)\n")
     elif bots_choice == users_input:
         result = draw
-        score.append(f"{users_input} : draw")
+        score.append(f"You both played {users_input}\n")
     else:
         result = lose
-        score.append(f"{users_input} : lose")
+        score.append(f"You played {users_input} and lost :(\n")
     final_return = [result, score]
     return final_return
+
 
 # def best_of_five(users_input): 
 #     score = []

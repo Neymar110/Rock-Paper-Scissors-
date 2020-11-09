@@ -32,7 +32,7 @@ score_list = []
 def example_invoker():
     round_submition_button.config(state = 'disabled')
     choice_entry_button.config(state = "active")
-    label['text'] = "Kindly enter a choice"
+    label['text'] = "The Game Has Started,Kindly Enter A Choice"
 
 def round_counter():
     example_invoker()
@@ -40,7 +40,6 @@ def round_counter():
     if (root.counter < int(rounds)):
         choice_entry_logic()
         root.counter += 1
-        print(root.counter)
     else:
         label['text'] = score_list
         round_submition_button.config(state = 'active')
