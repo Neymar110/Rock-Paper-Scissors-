@@ -33,78 +33,10 @@ def best_of_one(users_input):
     score = []
     users_input = input_validation(users_input).lower()
     bots_choice = bot_choice_generator() 
-    draw = f"Master minds. You both played {users_input}"
-    win = f"Well Done! You played {users_input}, and the bot played {bots_choice}."
-    lose = f"Uh oh, You played {users_input} and the bot played {bots_choice}."
     if logic(users_input, bots_choice):
-        result = win
-        score.append(f"You played {users_input} and won :)\n")
+        score.append(f"won")
     elif bots_choice == users_input:
-        result = draw
-        score.append(f"You both played {users_input}\n")
+        score.append(f"drawed")
     else:
-        result = lose
-        score.append(f"You played {users_input} and lost :(\n")
-    final_return = [result, score]
-    return final_return
-
-
-# def best_of_five(users_input): 
-#     score = []
-#     count = 0
-#     while count < 5:
-#         users_input = input_validation(users_input)
-#         bots_choice = bot_choice_generator() 
-#         draw = f"Master minds. You both played {users_input}"
-#         win = f"Well Done! You played {users_input}, and the bot played {bots_choice}."
-#         lose = f"Uh oh, You played {users_input} and the bot played {bots_choice}."
-#         if logic(users_input, bots_choice):
-#             print(win)
-#             score.append(f"{users_input} : win")
-#         elif bots_choice == users_input:
-#             print(draw)
-#             score.append(f"{users_input} : draw")
-#         else:
-#             print(lose)
-#             score.append(f"{users_input} : lose")
-#         count += 1
-#     print(score)
-
-# def best_of_three(users_choice):
-#     score = []
-#     count = 0
-#     while count < 3:
-#         users_choice = input_validation(users_choice)
-#         bots_choice = bot_choice_generator() 
-#         draw = f"Master minds. You both played {bots_choice}"
-#         win = f"Well Done! You played {users_choice}, and the bot played {users_choice}."
-#         lose = f"Uh oh, You played {users_choice} and the bot played {bots_choice}."
-#         if logic(users_choice, bots_choice):
-#             print(win)
-#             score.append(f"{users_choice} : win")
-#         elif bots_choice == users_choice:
-#             print(draw)
-#             score.append(f"{users_choice} : draw")
-#         else:
-#             print(lose)
-#             score.append(f"{users_choice} : lose")
-#         count += 1
-#     print(score)
-
-# def initiation_func(rounds):
-#     if rounds == "1" or rounds == "one":
-#         return best_of_one()
-    
-#     elif rounds == "3" or rounds == "three":
-#         return best_of_three()
-    
-#     elif rounds == "5" or rounds == "five":
-#         return best_of_five()
-
-# def init(users_input):
-#     score = []
-#     count = 0
-#     a = best_of_one
-#     while count < rounds:
-#         count += 1
-#         score.append(a(users_input))
+        score.append(f"lost")
+    return score

@@ -28,56 +28,82 @@ label = tk.Label(root, bg = "light blue", text = "Kindly enter a integer")
 label.place(relx = 0.15, rely = 0.6, relwidth = 0.7, relheight = 0.2)
 
 
-score_list = []
+root.score_list = []
 def example_invoker():
     round_submition_button.config(state = 'disabled')
     choice_entry_button.config(state = "active")
     label['text'] = "The Game Has Started,Kindly Enter A Choice"
 
-def round_counter():
+def round_init():
     example_invoker()
-    rounds = RPS_entry.get()
-    if (root.counter < int(rounds)):
+    root.rounds = RPS_entry.get()
+    root.win = 0
+    root.draw = 0
+    root.lose = 0
+    root.counter = 0
+    
+
+def round_counter():
+    if (root.counter < int(root.rounds)):
         choice_entry_logic()
         root.counter += 1
     else:
-        label['text'] = score_list
+        label['text'] = printer()
         round_submition_button.config(state = 'active')
         choice_entry_button.config(state = 'disabled')
-        root.counter = 0
+        root.score_list = []
+        
 
 
 
-round_submition_button = tk.Button(frame, text = "Submit Rounds", bg = "#ffc107", command = round_counter)
+round_submition_button = tk.Button(frame, text = "Submit Rounds", bg = "#ffc107", command = round_init)
 round_submition_button.place(anchor = "n", relwidth = 0.4, relheight = 0.2, relx = 0.8, rely = 0.15)
 
-score_list = []
+# root.score_list = []
 def Paper_button_invoker():
     runner = best_of_one("Paper")
-    score_list.append(runner[1])
-    label['text'] = runner[0]
+    root.score_list.append(runner)
+    label['text'] = f"You {runner[-1]}"
+    if runner[-1] == "drawed":
+        root.counter -= 1
 def Rock_button_invoker():
     runner = best_of_one("Rock")
-    score_list.append(runner[1])
-    label['text'] = runner[0]
+    root.score_list.append(runner)
+    label['text'] = f"You {runner[-1]}"
+    if runner[-1] == "drawed":
+        root.counter -= 1
 
 def Scissors_button_invoker():
     runner = best_of_one("Scissors")
-    score_list.append(runner[1])
-    label['text'] = runner[0]
+    root.score_list.append(runner)
+    label['text'] = f"You {runner[-1]}"
+    if runner[-1] == "drawed":
+        root.counter -= 1
+
 
 def printer():
-    print(score_list)
+    for every_item in root.score_list:
+        if every_item[0] == "won":
+            root.win += 1
+        elif every_item[0] == "lost":
+            root.lose += 1
+    if root.win > root.lose:
+        return f"Congrats You Won {root.win}, and the Bot Won {root.lose}"
+    if root.win == root.lose:
+        return f"Tie. Won : {root.win} Lost : {root.lose}"
+    if root.win < root.lose:
+        return f"The bot won. You Won: {root.win}, You Lost {root.lose}"
+
+    
 
 def choice_entry_logic():
     choice = choice_entry.get()
     if choice == "Rock" or choice == "rock":
         Rock_button_invoker()
-    if choice == "Scissors" or choice == "scissors":
+    elif choice == "Scissors" or choice == "scissors":
         Scissors_button_invoker()
-    if choice == "Paper" or choice == "paper":
+    elif choice == "Paper" or choice == "paper":
         Paper_button_invoker()
-
 choice_entry = tk.Entry(frame)
 choice_entry.place(relx = 0.03, rely = 0.67, relwidth = 0.55)
 
